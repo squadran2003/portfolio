@@ -1,0 +1,20 @@
+[project]
+name = "portfolio"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Andreas Cormack"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "wagtail (>=7.0,<8.0)",
+    "psycopg2-binary>=2.9.10",
+    "python-decouple>=3.8"
+
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

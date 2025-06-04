@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # change to your base directory
+      - ./portfolio:/usr/src/portfolio/portfolio
+    environment:
+      env_file: ./portfolio/.env
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8088"
+    ports:
+      - "8088:8088"
