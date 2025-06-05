@@ -28,6 +28,8 @@ POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", default="password")
 # Application definition
 
 INSTALLED_APPS = [
+    "base",
+    "resume",
     "home",
     "search",
     "wagtail.contrib.forms",
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "wagtail.contrib.settings",
     "modelcluster",
     "taggit",
     "django_filters",
@@ -78,6 +81,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
