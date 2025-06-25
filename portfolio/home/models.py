@@ -2,8 +2,25 @@ from django.db import models
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField
+from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.blocks import (
+    StreamBlock,
+)
+from base.models import (
+    HeadingBlock,
+   CardBlock,
+   CardsBlock,
+)
 
+
+class HomePageContent(StreamBlock):
+    heading = HeadingBlock(
+        help_text="Add a heading to the page."
+    )
+    cards = CardsBlock(
+        help_text="Add a series of cards to the page."
+    )
 
 class HomePage(Page):
    profile_image = models.ForeignKey(
@@ -40,7 +57,11 @@ class HomePage(Page):
       related_name='+',
       help_text="Link for the first call to action button."
    )
-   body = RichTextField(blank=True, features=["bold", "italic", "link", "document-link"])
+   body = StreamField(
+      HomePageContent(),
+      blank=True,
+      help_text="Add content to the body of the homepage."
+   )
    content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
@@ -49,8 +70,11 @@ class HomePage(Page):
                   FieldPanel('banner_subheader'),
                   FieldPanel('banner_cta_link_1'),
                   FieldPanel('banner_cta_link_2'),
+                  
             ],
             heading="Banner section",
         ),
         FieldPanel('body'),
     ]
+   
+
